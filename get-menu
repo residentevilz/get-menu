@@ -1,0 +1,18 @@
+import requests
+
+def get_menu(url, menu_slug):
+    api_url = f"{url}/wp-json/menus/v1/menus/{menu_slug}"
+    response = requests.get(api_url)
+    menu = response.json()
+    return menu
+
+# Example usage
+wordpress_url = "https://your-wordpress-site.com"
+menu_slug = "main-menu"
+menu = get_menu(wordpress_url, menu_slug)
+
+# Print menu items
+for item in menu['items']:
+    print(f"Title: {item['title']}")
+    print(f"URL: {item['url']}")
+    print("-----------")
